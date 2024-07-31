@@ -68,8 +68,8 @@ camera.position.set(0, 0, 8)
 scene.add(camera)
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
 
 /**
  * Renderer
@@ -78,7 +78,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
 })
-renderer.setClearColor('#101010')
+renderer.setClearColor( 0x000000, 0 );
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(sizes.pixelRatio);
 
@@ -199,7 +199,7 @@ scene.add(particles)
 const tick = () =>
 {
     // Update controls
-    controls.update();
+    // controls.update();
 
     /**
      * Raycaster
