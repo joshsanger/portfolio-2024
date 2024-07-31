@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply overscroll-none;
+  }
+
+  body {
+    @apply overscroll-none font-serif text-white;
+    -webkit-tap-highlight-color: transparent;
+    background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 13C23.7348 13 23.4804 12.8946 23.2929 12.7071C23.1054 12.5196 23 12.2652 23 12C23 11.7348 23.1054 11.4804 23.2929 11.2929C23.4804 11.1054 23.7348 11 24 11' fill='white' fill-opacity='0.1'/%3E%3Cpath d='M0 11C0.265216 11 0.51957 11.1054 0.707107 11.2929C0.894643 11.4804 1 11.7348 1 12C1 12.2652 0.894643 12.5196 0.707107 12.7071C0.51957 12.8946 0.265216 13 0 13' fill='white' fill-opacity='0.1'/%3E%3C/svg%3E%0A") repeat, black linear-gradient(180deg, #303030 0%, #000000 100%) no-repeat;
+  }
+
+  canvas {
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 25%, #000000 50%);
+  }
+}
+
+@layer utilities {
+  .clip {
+    overflow: clip;
+  }
+
+  .container {
+    @apply mx-auto px-16 md:px-30 max-w-1680 lg:px-60 xl:px-100;
+  }
+}
