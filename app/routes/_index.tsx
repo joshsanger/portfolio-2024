@@ -277,9 +277,9 @@ tick()
     <main className="h-full leading-[1] pt-40 pb-100">
       <div className="container grid items-center h-full">
         <div>
-          <h1 className="text-[clamp(80px,10vmax,200px)]">Josh<br/>Sanger</h1>
+          <h1 className="text-[clamp(80px,8.5vmax,200px)]">Josh<br/>Sanger</h1>
           <p className="text-yellow font-sans text-20 mt-20">Senior Front End Developer</p>
-          <p className="text-[clamp(16px,2vmax,28px)] max-w-520 text-balance mt-16">I strive to create beautiful experiences that are inclusive and easy to use while providing moments of awe and delight.</p>
+          <p className="text-[clamp(16px,1.5vmax,28px)] max-w-425 text-pretty mt-16 leading-[1.5]">I strive to create beautiful experiences that are inclusive and easy to use while providing moments of awe and delight.</p>
         </div>
       </div>
       <canvas ref={canvasRef} className="size-full fixed top-0 right-0 z-[-1]"></canvas>
