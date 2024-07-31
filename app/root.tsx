@@ -7,14 +7,10 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import tailwindCss from "./tailwind.css?url";
+import me from "~/images/me.jpg";
 
 export const links: LinksFunction = () => {
   return [
-    // {
-    //   rel: "icon",
-    //   href: "/favicon.png",
-    //   type: "image/png",
-    // },
     {
       rel: "stylesheet",
       href: tailwindCss,
@@ -26,7 +22,7 @@ export const links: LinksFunction = () => {
     {
       rel: "preconnect",
       href: "https://fonts.gstatic.com",
-      crossOrigin: "true",
+      crossorigin: "true",
     },
     {
       rel: "stylesheet",
@@ -35,10 +31,6 @@ export const links: LinksFunction = () => {
     },
   ];
 };
-
-{/* <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Frank+Ruhl+Libre:wght@300..900&display=swap" rel="stylesheet"></link> */}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -56,10 +48,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className="h-full grid grid-rows-[60px_1fr]">
+      <body className="h-full grid grid-rows-[100px_1fr]">
         <header className="sticky top-0 right-0 w-full container flex items-center justify-end">
-          <nav>
-            dsadsa
+          <nav className="flex gap-30 items-center">
+            <ul className="flex gap-30 items-center font-sans text-yellow">
+              <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline">Latest project</a></li>
+              <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline">Articles</a></li>
+              <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline">Playground</a></li>
+            </ul>
+            <a href="mailto:joshua.v.sanger@gmail.com" className="font-sans px-35 py-10 rounded-full bg-yellow text-black grid place-items-center hover:bg-yellow2 transition-colors">Contact</a>
+            <img src={me} alt="Josh Sanger holding pineapples" className="size-60 rounded-xl"/>
           </nav>
         </header>
         {children}
