@@ -1,3 +1,4 @@
+// VERTEX
 uniform vec2 uResolution;
 uniform sampler2D uPictureTexture;
 uniform sampler2D uAsciiTexture;
@@ -11,6 +12,9 @@ attribute float aAngle;
 
 varying vec3 vColor;
 varying vec2 vAsciiUv;
+varying float vDisplacementIntensity; // Add this line
+varying float vPictureIntensity; // Add this line
+varying vec2 vUv;
 
 void main()
 {
@@ -26,27 +30,31 @@ void main()
         1
     );
 
+    vUv = uv;
+
     displacement = normalize(displacement);
 
     displacement *= displacementIntensity;
-    displacement *= 2.0;
+    displacement *= 0.85;
     displacement *= aIntensity;
     newPosition += displacement;
 
-    // lets add some randomness
-
+    // Pass the displacement intensity to the fragment shader
+    vDisplacementIntensity = displacementIntensity;
 
     // Final position
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
+
     vec4 projectedPosition = projectionMatrix * viewPosition;
     gl_Position = projectedPosition;
 
     // Picture texture
-    float uPictureTexture = texture(uPictureTexture, uv).r;
+    float pictureIntensity = texture(uPictureTexture, uv).r;
+    vPictureIntensity = pictureIntensity; // Pass the picture intensity to the fragment shader
 
     // Point size
-    gl_PointSize = 0.2 * uPictureTexture * uResolution.y;
+    gl_PointSize = 0.2 * pictureIntensity * uResolution.y;
     gl_PointSize *= (1.0 / - viewPosition.z);
 
     // ASCII texture UV calculation
@@ -56,5 +64,5 @@ void main()
     vAsciiUv = vec2(charX, charY) * uAsciiCharSize / uAsciiTextureSize;
 
     // varryings
-    vColor = vec3(pow(uPictureTexture, 2.0));
+    vColor = vec3(pow(pictureIntensity, 2.0));
 }

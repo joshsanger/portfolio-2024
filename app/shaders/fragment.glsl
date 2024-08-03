@@ -1,9 +1,13 @@
+// FRAGMENT
 uniform sampler2D uAsciiTexture;
 uniform float uAsciiTextureSize;
 uniform float uAsciiCharSize;
 
 varying vec3 vColor;
 varying vec2 vAsciiUv;
+varying float vDisplacementIntensity; // Add this line
+varying float vPictureIntensity; // Add this line
+varying vec2 vUv;
 
 void main()
 {
@@ -16,7 +20,15 @@ void main()
         discard;
     }
 
-    gl_FragColor = vec4(vColor * asciiColor.rgb, asciiColor.a);
+    // Discard particles that are not part of the picture
+    if (vPictureIntensity < 0.1) {
+        discard;
+    }
+
+    // Interpolate color based on displacement intensity
+    vec3 color = mix(vec3(vUv, 1), vec3(1.0, 1.0, 1.0), vDisplacementIntensity);
+
+    gl_FragColor = vec4(color, asciiColor.a);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
 }
