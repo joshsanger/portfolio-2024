@@ -51,12 +51,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="h-full grid grid-rows-[100px_1fr]">
         <header className="sticky top-0 right-0 w-full container flex items-center justify-end">
           <nav className="flex gap-30 items-center">
-            <ul className="flex gap-30 items-center font-sans text-yellow">
+            <ul className="flex gap-30 items-center font-sans text-teal">
               <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline">Latest project</a></li>
               <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline">Articles</a></li>
               <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline">Playground</a></li>
             </ul>
-            <a href="mailto:joshua.v.sanger@gmail.com" className="font-sans px-35 py-10 rounded-full bg-yellow text-black grid place-items-center hover:bg-yellow2 transition-colors">Contact</a>
+            <a href="mailto:joshua.v.sanger@gmail.com" className="font-sans px-35 py-10 rounded-full bg-teal text-black grid place-items-center hover:bg-teal2 transition-colors">Contact</a>
             <img src={me} alt="Josh Sanger holding pineapples" className="size-60 rounded-xl"/>
           </nav>
         </header>

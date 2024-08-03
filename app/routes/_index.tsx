@@ -303,7 +303,7 @@ tick();
             <br />
             Sanger
           </h1>
-          <p className="text-yellow font-sans text-20 mt-20">
+          <p className="text-teal font-sans text-20 mt-20">
             Senior Front End Developer
           </p>
           <p className="text-[clamp(16px,1.5vmax,28px)] max-w-425 text-pretty mt-16 leading-[1.5]">
