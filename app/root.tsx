@@ -22,7 +22,7 @@ export const links: LinksFunction = () => {
     {
       rel: "preconnect",
       href: "https://fonts.gstatic.com",
-      crossorigin: "true",
+      crossOrigin: "true",
     },
     {
       rel: "stylesheet",
@@ -56,8 +56,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline">Articles</a></li>
               <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline">Playground</a></li>
             </ul>
-            <a href="mailto:joshua.v.sanger@gmail.com" className="font-sans px-35 py-10 rounded-full bg-teal text-black grid place-items-center hover:bg-teal2 transition-colors">Contact</a>
-            <img src={me} alt="Josh Sanger holding pineapples" className="size-60 rounded-xl"/>
+            <a href="mailto:joshua.v.sanger@gmail.com" className="contact font-sans rounded-full bg-teal text-black inline-grid place-items-center transition-colors w-123 h-44 relative clip hover:bg-teal2" style={{perspective: '100px', perspectiveOrigin: '50% 50%'}}>
+              Contact
+            </a>
+            <div className="size-60 rounded-xl clip relative">
+              <img src={me} alt="Josh Sanger holding pineapples" className="size-full"/>
+            </div>
+
           </nav>
         </header>
         {children}
