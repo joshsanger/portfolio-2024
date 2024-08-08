@@ -8,6 +8,8 @@ import {
 } from "@remix-run/react";
 import tailwindCss from "./tailwind.css?url";
 import me from "~/images/me.jpg";
+import WordScramble from "~/components/WordScramble/WordScramble";
+import HoverGlitch from "~/components/HoverGlitch/HoverGlitch";
 
 export const links: LinksFunction = () => {
   return [
@@ -50,18 +52,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="h-full grid grid-rows-[100px_1fr]">
         <header className="sticky top-0 right-0 w-full container flex items-center justify-end">
-          <nav className="flex gap-30 items-center">
-            <ul className="flex gap-30 items-center font-sans text-teal">
-              <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline">Latest project</a></li>
-              <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline">Articles</a></li>
-              <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline">Playground</a></li>
+          <nav className="flex items-center">
+            <ul className="flex gap-10 items-center font-sans text-teal">
+              <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
+              <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
+              <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
             </ul>
-            <a href="mailto:joshua.v.sanger@gmail.com" className="contact font-sans rounded-full bg-teal text-black inline-grid place-items-center transition-colors w-123 h-44 relative clip hover:bg-teal2" style={{perspective: '100px', perspectiveOrigin: '50% 50%'}}>
+            <a href="mailto:joshua.v.sanger@gmail.com" className="mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-grid place-items-center transition-colors w-123 h-44 relative clip hover:bg-teal2">
               Contact
             </a>
-            <div className="size-60 rounded-xl clip relative">
-              <img src={me} alt="Josh Sanger holding pineapples" className="size-full"/>
-            </div>
+            <a href="https://www.linkedin.com/in/jsanger" target="_blank" rel="noopener noreferrer" className="size-60 rounded-xl relative">
+              <HoverGlitch>
+              <img src={me} alt="Josh Sanger holding pineapples" className="size-full rounded-xl"/>
+              </HoverGlitch>
+            </a>
 
           </nav>
         </header>

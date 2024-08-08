@@ -17,10 +17,13 @@
     "@remix-run/react": "^2.10.3",
     "@remix-run/serve": "^2.10.3",
     "@types/three": "^0.167.1",
+    "classnames": "^2.5.1",
     "isbot": "^4.1.0",
     "lil-gui": "^0.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-powerglitch": "^1.0.3",
+    "tailwind-merge": "^2.4.0",
     "three": "^0.167.0"
   },
   "devDependencies": {

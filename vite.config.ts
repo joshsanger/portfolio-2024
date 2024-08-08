@@ -15,6 +15,9 @@ export default defineConfig({
     tsconfigPaths(),
     glsl(),
   ],
+  ssr: {
+    noExternal: ['react-powerglitch'],
+  },
   server: {
     port: 3000,
   },

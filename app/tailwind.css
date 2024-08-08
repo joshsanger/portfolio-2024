@@ -6,6 +6,11 @@
   html {
     @apply overscroll-none;
   }
+  /* selection */
+  ::selection {
+    @apply bg-teal text-black;
+  }
+
 
   body {
     @apply overscroll-none font-serif text-white;
@@ -46,7 +51,6 @@
 
     }
   }
-
 }
 
 @layer utilities {
