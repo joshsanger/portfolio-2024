@@ -1,10 +1,10 @@
 import {useGlitch} from 'react-powerglitch';
 
-export default function HoverGlitch({children, className}: {children: React.ReactNode, className?: string}) {
+export default function HoverGlitch({children, className, count = 4}: {children: React.ReactNode, className?: string, count?: number}) {
   const glitch = useGlitch({
     playMode: 'hover',
     slice: {
-      count: 4,
+      count,
       hueRotate: false,
     }
   });

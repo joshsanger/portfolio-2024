@@ -38,7 +38,7 @@ export default function CodeCanvas() {
       sizes.pixelRatio = Math.min(window.devicePixelRatio, 2);
 
       if (window.innerWidth < 640) {
-        camera.position.set(0, 0, 15);
+        camera.position.set(0.5, 0, 12);
       } else if (window.innerWidth < 1024) {
         camera.position.set(0, 0, 12);
       } else {
@@ -302,17 +302,6 @@ export default function CodeCanvas() {
       );
 
       displacement.texture.needsUpdate = true;
-
-      // make random letters change every 1 second (only 100 random letters at a time)
-      // const charIndices = particlesGeometry.attributes.aCharIndex.array;
-      // for (let i = 0; i < 25; i++) {
-      //     charIndices[Math.floor(Math.random() * charIndices.length)] = Math.floor(Math.random() * 256);
-      // }
-
-      // particlesGeometry.attributes.aCharIndex.needsUpdate = true;
-
-      // move up and down every 2 seconds
-      // particles.rotation.y = Math.sin(Date.now() * 0.001) * -0.1;
 
       // Render
       renderer.render(scene, camera);

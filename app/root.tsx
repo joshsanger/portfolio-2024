@@ -53,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="h-full grid grid-rows-[100px_1fr]">
         <header className="sticky top-0 right-0 w-full container flex items-center justify-end">
           <nav className="flex items-center">
-            <ul className="flex gap-10 items-center font-sans text-teal">
+            <ul className="hidden gap-10 items-center font-sans text-teal md:flex">
               <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
               <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
               <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
