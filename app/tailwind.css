@@ -29,15 +29,6 @@
       mask-composite: intersect;
     }
   }
-
-  @keyframes draw {
-    to {
-      background-color: black;
-      stroke-dashoffset: 0;
-      /* background: white; */
-
-    }
-  }
 }
 
 @layer utilities {
