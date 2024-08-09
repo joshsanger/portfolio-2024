@@ -13,13 +13,8 @@ export default function CodeCanvas() {
     /**
      * Base
      */
-    // Canvas
     const canvas = canvasRef.current;
-
-    // Scene
     const scene = new THREE.Scene();
-
-    // Loaders
     const textureLoader = new THREE.TextureLoader();
 
     /**
@@ -32,7 +27,6 @@ export default function CodeCanvas() {
     };
 
     const handleResize = () => {
-      // Update sizes
       sizes.width = window.innerWidth;
       sizes.height = window.innerHeight;
       sizes.pixelRatio = Math.min(window.devicePixelRatio, 2);
@@ -45,17 +39,13 @@ export default function CodeCanvas() {
         camera.position.set(0, 0, 8);
       }
 
-      // Materials
       particlesMaterial.uniforms.uResolution.value.set(
         sizes.width * sizes.pixelRatio,
         sizes.height * sizes.pixelRatio
       );
 
-      // Update camera
       camera.aspect = sizes.width / sizes.height;
       camera.updateProjectionMatrix();
-
-      // Update renderer
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(sizes.pixelRatio);
     };
@@ -65,7 +55,6 @@ export default function CodeCanvas() {
     /**
      * Camera
      */
-    // Base camera
     const camera = new THREE.PerspectiveCamera(
       35,
       sizes.width / sizes.height,
@@ -75,16 +64,11 @@ export default function CodeCanvas() {
     camera.position.set(0, 0, 8);
     scene.add(camera);
 
-    // Controls
-    // const controls = new OrbitControls(camera, canvas)
-    // controls.enableDamping = true
-
     /**
      * Renderer
      */
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
-      // antialias: true
     });
     renderer.setClearColor("black", 0);
     renderer.setSize(sizes.width, sizes.height);
@@ -95,70 +79,53 @@ export default function CodeCanvas() {
     /**
      * Displacement
      */
-    const displacement = {};
+    const displacement = {
+      canvas: document.createElement("canvas"),
+      glowImage: new Image(),
+      interactivePlane: new THREE.Mesh(
+        new THREE.PlaneGeometry(10, 10),
+        new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide })
+      ),
+      raycaster: new THREE.Raycaster(),
+      screenCursor: new THREE.Vector2(9999, 9999),
+      canvasCursor: new THREE.Vector2(9999, 9999),
+      canvasCursorPrevious: new THREE.Vector2(9999, 9999),
+    };
 
-    displacement.canvas = document.createElement("canvas");
     displacement.canvas.width = particleCount;
     displacement.canvas.height = particleCount;
-    // displacement.canvas.style.position = 'fixed';
-    // displacement.canvas.style.zIndex = 10;
-    // displacement.canvas.style.top = 0;
-    // displacement.canvas.style.left = 0;
-    // displacement.canvas.style.width = '256px';
-    // displacement.canvas.style.height = '256px';
-    // document.body.append(displacement.canvas);
-    displacement.context = displacement.canvas.getContext("2d");
-
-    // make fillstyle a gradient from white to to black
-
-    const gradient = displacement.context.createLinearGradient(
-      0,
-      0,
-      0,
-      displacement.canvas.height
-    );
+    const context = displacement.canvas.getContext("2d");
+    const gradient = context.createLinearGradient(0, 0, 0, displacement.canvas.height);
     gradient.addColorStop(0, "black");
     gradient.addColorStop(0.4, "white");
-    displacement.context.fillStyle = gradient;
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, displacement.canvas.width, displacement.canvas.height);
+    context.fillStyle = "black";
 
-    displacement.context.fillRect(
-      0,
-      0,
-      displacement.canvas.width,
-      displacement.canvas.height
-    );
-    displacement.context.fillStyle = "black";
-
-    // glow image
-    displacement.glowImage = new Image();
     displacement.glowImage.src = "./glow.png";
-
-    // interactibve plane
-    displacement.interactivePlane = new THREE.Mesh(
-      new THREE.PlaneGeometry(10, 10),
-      new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide })
-    );
-
     displacement.interactivePlane.position.x = 1.1;
     displacement.interactivePlane.rotation.y = Math.PI * -0.2;
     displacement.interactivePlane.visible = false;
-
     scene.add(displacement.interactivePlane);
 
-    // raycaster
-    displacement.raycaster = new THREE.Raycaster();
-
-    // make the default screen cursor position offscreen
-    displacement.screenCursor = new THREE.Vector2(9999, 9999);
-    displacement.canvasCursor = new THREE.Vector2(9999, 9999);
-    displacement.canvasCursorPrevious = new THREE.Vector2(9999, 9999);
-
+    /**
+     * Event Handlers
+     */
     const handlePointerMove = (event) => {
       displacement.screenCursor.x = (event.clientX / sizes.width) * 2 - 1;
       displacement.screenCursor.y = -(event.clientY / sizes.height) * 2 + 1;
     };
 
+    const handleTouchMove = (event) => {
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        displacement.screenCursor.x = (touch.clientX / sizes.width) * 2 - 1;
+        displacement.screenCursor.y = -(touch.clientY / sizes.height) * 2 + 1;
+      }
+    };
+
     window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("touchmove", handleTouchMove);
 
     /**
      * CANVAS TEXTURE
@@ -168,45 +135,27 @@ export default function CodeCanvas() {
     /**
      * Particles
      */
-    const particlesGeometry = new THREE.PlaneGeometry(
-      10,
-      10,
-      particleCount,
-      particleCount
-    );
-
-    // dont send data to the GPU that you don't need
+    const particlesGeometry = new THREE.PlaneGeometry(10, 10, particleCount, particleCount);
     particlesGeometry.setIndex = null;
     particlesGeometry.deleteAttribute("normal");
 
-    // Generate character indices
-    const charIndices = new Float32Array(
-      particlesGeometry.attributes.position.count
-    );
+    const charIndices = new Float32Array(particlesGeometry.attributes.position.count);
     for (let i = 0; i < charIndices.length; i++) {
-      charIndices[i] = Math.floor(Math.random() * 256); // Assuming 256 ASCII characters
+      charIndices[i] = Math.floor(Math.random() * 256);
     }
     particlesGeometry.setAttribute(
       "aCharIndex",
       new THREE.BufferAttribute(charIndices, 1)
     );
 
-    const asciiTexture = textureLoader.load(
-      "./ascii_texture.png",
-      (texture) => {
-        texture.minFilter = THREE.LinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-      }
-    );
+    const asciiTexture = textureLoader.load("./ascii_texture.png", (texture) => {
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+    });
 
-    const intensitiesArray = new Float32Array(
-      particlesGeometry.attributes.position.count
-    );
-    const anglesArray = new Float32Array(
-      particlesGeometry.attributes.position.count
-    );
+    const intensitiesArray = new Float32Array(particlesGeometry.attributes.position.count);
+    const anglesArray = new Float32Array(particlesGeometry.attributes.position.count);
 
-    // 9000 something iterations
     for (let i = 0; i < intensitiesArray.length; i++) {
       intensitiesArray[i] = Math.random();
       anglesArray[i] = Math.random() * Math.PI * 2;
@@ -233,8 +182,8 @@ export default function CodeCanvas() {
         ),
         uPictureTexture: new THREE.Uniform(textureLoader.load("./code3.jpg")),
         uAsciiTexture: new THREE.Uniform(asciiTexture),
-        uAsciiTextureSize: new THREE.Uniform(256.0), // Assuming the texture is 256x256 pixels
-        uAsciiCharSize: new THREE.Uniform(16.0), // Assuming each character is 16x16 pixels
+        uAsciiTextureSize: new THREE.Uniform(256.0),
+        uAsciiCharSize: new THREE.Uniform(16.0),
         uDisplacementTexture: new THREE.Uniform(displacement.texture),
       },
     });
@@ -247,53 +196,28 @@ export default function CodeCanvas() {
      * Animate
      */
     const tick = () => {
-      // Update controls
-      // controls.update();
-
-      /**
-       * Raycaster
-       */
       displacement.raycaster.setFromCamera(displacement.screenCursor, camera);
-      const intersections = displacement.raycaster.intersectObject(
-        displacement.interactivePlane
-      );
+      const intersections = displacement.raycaster.intersectObject(displacement.interactivePlane);
 
       if (intersections.length) {
         const uv = intersections[0].uv;
-
         displacement.canvasCursor.x = uv.x * displacement.canvas.width;
         displacement.canvasCursor.y = (1 - uv.y) * displacement.canvas.height;
       }
 
-      /**
-       * Displacement
-       */
-      displacement.context.globalCompositeOperation = "source-over";
-      displacement.context.globalAlpha = 0.015;
-      displacement.context.fillRect(
-        0,
-        0,
-        displacement.canvas.width,
-        displacement.canvas.height
-      );
+      context.globalCompositeOperation = "source-over";
+      context.globalAlpha = 0.015;
+      context.fillRect(0, 0, displacement.canvas.width, displacement.canvas.height);
 
-      // calculate distance between
-      const cusorDistance = displacement.canvasCursorPrevious.distanceTo(
-        displacement.canvasCursor
-      );
-
-      // previous position
+      const cursorDistance = displacement.canvasCursorPrevious.distanceTo(displacement.canvasCursor);
       displacement.canvasCursorPrevious.copy(displacement.canvasCursor);
 
-      // alpha
-      const alpha = Math.min(cusorDistance * 0.1, 1);
-
-      // draw glow
+      const alpha = Math.min(cursorDistance * 0.1, 1);
       const glowSize = displacement.canvas.width * 0.35;
 
-      displacement.context.globalAlpha = alpha;
-      displacement.context.globalCompositeOperation = "lighten";
-      displacement.context.drawImage(
+      context.globalAlpha = alpha;
+      context.globalCompositeOperation = "lighten";
+      context.drawImage(
         displacement.glowImage,
         displacement.canvasCursor.x - glowSize * 0.5,
         displacement.canvasCursor.y - glowSize * 0.5,
@@ -303,18 +227,17 @@ export default function CodeCanvas() {
 
       displacement.texture.needsUpdate = true;
 
-      // Render
       renderer.render(scene, camera);
-
-      // Call tick again on the next frame
       window.requestAnimationFrame(tick);
     };
+
     tick();
     handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
