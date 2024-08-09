@@ -58,8 +58,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
               <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
             </ul>
-            <a href="mailto:joshua.v.sanger@gmail.com" className="mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-grid place-items-center transition-colors w-123 h-44 relative clip hover:bg-teal2">
-              Contact
+            <a href="mailto:joshua.v.sanger@gmail.com" aria-label="Contact" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-123 h-44 relative hover:bg-white/10 clip">
+              <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Contact</span>
+              <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
+                <span className="animation-paused group-hover/contact:animation-running animate-wave">👋</span>
+              </span>
             </a>
             <a href="https://www.linkedin.com/in/jsanger" target="_blank" rel="noopener noreferrer" className="size-60 rounded-xl relative">
               <HoverGlitch>

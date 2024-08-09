@@ -32,7 +32,7 @@ export default function Index() {
           </p>
         </div>
       </div>
-      <CodeCanvas />
+      {/* <CodeCanvas /> */}
     </main>
   );
 }

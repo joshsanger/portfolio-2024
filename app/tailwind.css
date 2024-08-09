@@ -65,4 +65,12 @@
   .preserve-3d {
     transform-style: preserve-3d;
   }
+
+  .animation-running {
+    animation-play-state: running;
+  }
+
+  .animation-paused {
+    animation-play-state: paused;
+  }
 }

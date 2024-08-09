@@ -11,6 +11,7 @@ import minWidth from './minWidth';
 import minHeight from './minHeight';
 import screens from './screens';
 import spacing from './spacing';
+import transitionTimingFunction from './transitionTimingFunction';
 
 export {
   animation,
@@ -26,4 +27,5 @@ export {
   minHeight,
   screens,
   spacing,
+  transitionTimingFunction,
 };

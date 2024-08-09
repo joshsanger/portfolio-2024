@@ -14,6 +14,7 @@ import {
   minHeight,
   screens,
   spacing,
+  transitionTimingFunction,
 } from './app/styles/tailwindOverrides';
 
 /** @type {import('tailwindcss').Config} */
@@ -34,6 +35,7 @@ export default {
       minHeight,
       screens,
       spacing,
+      transitionTimingFunction,
     },
   },
   plugins: [],
