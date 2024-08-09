@@ -38,7 +38,7 @@ export default function CodeCanvas() {
       sizes.pixelRatio = Math.min(window.devicePixelRatio, 2);
 
       if (window.innerWidth < 640) {
-        camera.position.set(0.5, 0, 12);
+        camera.position.set(0.75, -3.0, 20);
       } else if (window.innerWidth < 1024) {
         camera.position.set(0, 0, 12);
       } else {

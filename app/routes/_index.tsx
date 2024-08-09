@@ -20,8 +20,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="h-full leading-[1] pt-40 pb-100">
-      <div className="container grid items-center h-full">
+    <main className="h-full leading-[1] pt-40 pb-120">
+      <div className="container grid items-end h-full">
         <div>
           <h1 className="text-[clamp(110px,8.5vmax,160px)]">
             Josh
