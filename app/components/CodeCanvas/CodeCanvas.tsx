@@ -1,14 +1,34 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import cn from "classnames";
+
 // import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import particlesVertexShader from "~/shaders/vertex.glsl";
 import particlesFragmentShader from "~/shaders/fragment.glsl";
 
 export default function CodeCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isSceneReady, setIsSceneReady] = useState(false);
+  const isMountedRef = useRef(false);
+
 
   useEffect(() => {
     if (!canvasRef.current) return;
+
+    isMountedRef.current = true;
+
+    let texturesLoaded = 0;
+    const totalTextures = 2;
+
+    const checkIfReady = () => {
+      texturesLoaded += 1;
+      if (texturesLoaded === totalTextures) {
+        // All assets are loaded, set the scene as ready
+        setIsSceneReady(true);
+        tick();
+        handleResize();
+      }
+    };
 
     /**
      * Base
@@ -74,7 +94,7 @@ export default function CodeCanvas() {
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(sizes.pixelRatio);
 
-    const particleCount = 128;
+    const particleCount = 124;
 
     /**
      * Displacement
@@ -84,7 +104,7 @@ export default function CodeCanvas() {
       glowImage: new Image(),
       interactivePlane: new THREE.Mesh(
         new THREE.PlaneGeometry(10, 10),
-        new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide })
+        new THREE.MeshBasicMaterial({ color: 0xff0000})
       ),
       raycaster: new THREE.Raycaster(),
       screenCursor: new THREE.Vector2(9999, 9999),
@@ -151,6 +171,8 @@ export default function CodeCanvas() {
     const asciiTexture = textureLoader.load("./ascii_texture.png", (texture) => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
+
+      checkIfReady();
     });
 
     const intensitiesArray = new Float32Array(particlesGeometry.attributes.position.count);
@@ -180,7 +202,7 @@ export default function CodeCanvas() {
             sizes.height * sizes.pixelRatio
           )
         ),
-        uPictureTexture: new THREE.Uniform(textureLoader.load("./code3.jpg")),
+        uPictureTexture: new THREE.Uniform(textureLoader.load("./code3.jpg", checkIfReady)),
         uAsciiTexture: new THREE.Uniform(asciiTexture),
         uAsciiTextureSize: new THREE.Uniform(256.0),
         uAsciiCharSize: new THREE.Uniform(16.0),
@@ -231,8 +253,8 @@ export default function CodeCanvas() {
       window.requestAnimationFrame(tick);
     };
 
-    tick();
-    handleResize();
+    // tick();
+    // handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -244,7 +266,7 @@ export default function CodeCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="bg-transparent size-full fixed top-0 right-0 z-[-1]"
+      className={cn('bg-transparent size-full fixed top-0 right-0 z-[-1] transition-opacity duration-500', isSceneReady ? 'opacity-100' : 'opacity-0')}
     />
   )
 }
