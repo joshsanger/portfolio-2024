@@ -253,9 +253,6 @@ export default function CodeCanvas() {
       window.requestAnimationFrame(tick);
     };
 
-    // tick();
-    // handleResize();
-
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("pointermove", handlePointerMove);
@@ -266,7 +263,7 @@ export default function CodeCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className={cn('bg-transparent size-full fixed top-0 right-0 z-[-1] transition-opacity duration-500', isSceneReady ? 'opacity-100' : 'opacity-0')}
+      className={cn('bg-transparent size-full absolute top-0 right-0 z-[-1] transition-opacity duration-[1.1s]', isSceneReady ? 'opacity-100' : 'opacity-0')}
     />
   )
 }

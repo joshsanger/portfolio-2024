@@ -50,8 +50,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className="h-full grid grid-rows-[100px_1fr]">
-        <header className="sticky top-0 right-0 w-full container flex items-center justify-end">
+      <body className="">
+        <header className="fixed top-0 right-0 w-full container flex items-center justify-end h-100 animate-reveal-nav opacity-0">
           <nav className="flex items-center">
             <ul className="hidden gap-10 items-center font-sans text-teal md:flex">
               <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
