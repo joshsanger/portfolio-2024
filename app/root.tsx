@@ -51,26 +51,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className="">
-        <header className="fixed top-0 right-0 w-full container flex items-center justify-end h-100 animate-reveal-nav opacity-0">
-          <nav className="flex items-center">
-            <ul className="hidden gap-10 items-center font-sans text-teal md:flex">
-              <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
-              <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
-              <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
-            </ul>
-            <a href="mailto:joshua.v.sanger@gmail.com" aria-label="Contact" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-123 h-44 relative hover:bg-white/10 clip">
-              <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Contact</span>
-              <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
-                <span className="animation-paused group-hover/contact:animation-running animate-wave">👋</span>
-              </span>
-            </a>
-            <a href="https://www.linkedin.com/in/jsanger" target="_blank" rel="noopener noreferrer" className="size-60 rounded-xl relative">
-              <HoverGlitch>
-              <img src={me} alt="Josh Sanger holding pineapples" className="size-full rounded-xl"/>
-              </HoverGlitch>
-            </a>
-
-          </nav>
+        <header className="fixed top-0 left-0 w-full h-100 animate-reveal-nav opacity-0">
+          <div className="h-full container flex items-center justify-end">
+            <nav className="flex items-center">
+              <ul className="hidden gap-10 items-center font-sans text-teal md:flex">
+                <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
+                <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
+                <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
+              </ul>
+              <a href="mailto:joshua.v.sanger@gmail.com" aria-label="Contact" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-123 h-44 relative hover:bg-white/10 clip">
+                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Contact</span>
+                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
+                  <span className="animation-paused group-hover/contact:animation-running animate-wave">👋</span>
+                </span>
+              </a>
+              <a href="https://www.linkedin.com/in/jsanger" target="_blank" rel="noopener noreferrer" className="size-60 rounded-xl relative">
+                <HoverGlitch>
+                <img src={me} alt="Josh Sanger holding pineapples" className="size-full rounded-xl"/>
+                </HoverGlitch>
+              </a>
+            </nav>
+          </div>
         </header>
         {children}
         <ScrollRestoration />

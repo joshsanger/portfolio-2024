@@ -51,8 +51,12 @@ export default function CodeCanvas() {
       sizes.height = window.innerHeight;
       sizes.pixelRatio = Math.min(window.devicePixelRatio, 2);
 
-      if (window.innerWidth < 640) {
-        camera.position.set(0.75, -3.0, 20);
+      if (window.innerWidth < 520) {
+        camera.position.set(0.75, -3.25, 25);
+        displacement.interactivePlane.position.x = 0.75;
+        displacement.interactivePlane.rotation.y = Math.PI * -0.1;
+        particles.position.x = 0.75;
+        particles.rotation.y = Math.PI * -0.1;
       } else if (window.innerWidth < 1024) {
         camera.position.set(0, 0, 12);
       } else {

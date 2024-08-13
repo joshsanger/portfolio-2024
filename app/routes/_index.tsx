@@ -21,7 +21,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <main className="h-full">
-      <section className="h-[calc(100svh-100px)] leading-[1] pt-40 pb-80 lg:pb-120 mt-100">
+      <section className="h-[calc(100svh-100px)] leading-[1] pt-40 mt-100">
         <div className="container grid items-end sm:items-center h-full">
           <div>
             <h1 className="text-[clamp(110px,8.5vmax,160px)]">
@@ -35,7 +35,7 @@ export default function Index() {
               I create beautiful online experiences with baked-in moments of awe
               and delight.
             </p>
-            <p className="mt-20 flex flex-wrap gap-[clamp(10px,3%,20px)] items-center">
+            <p className="mt-20 flex flex-wrap gap-[clamp(10px,3%,20px)] items-center pb-80 lg:pb-120">
               <HoverGlitch>
                 <a href="https://www.linkedin.com/in/jsanger" target="_blank" rel="noopener noreferrer" className="inline-grid place-items-center size-44 rounded-full bg-teal hover:bg-teal2 animate-reveal-3 opacity-0" style={{animationDelay: '0.75s'}}>
                   <Linkedin />
