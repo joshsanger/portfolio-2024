@@ -7,6 +7,14 @@ export default {
       transform: 'translateX(50%) rotate(20deg)',
     },
   },
+  leave: {
+    '0%, 100%': {
+      transform: 'translateX(-50%)',
+    },
+    '50%': {
+      transform: 'translateX(50%)',
+    },
+  },
   'reveal': {
     '0%': {
       opacity: 0,

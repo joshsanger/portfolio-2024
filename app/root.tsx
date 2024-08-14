@@ -1,10 +1,12 @@
 import {LinksFunction} from "@remix-run/node";
 import {
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react";
 import tailwindCss from "./tailwind.css?url";
 import me from "~/images/me.jpg";
@@ -24,7 +26,7 @@ export const links: LinksFunction = () => {
     {
       rel: "preconnect",
       href: "https://fonts.gstatic.com",
-      crossOrigin: "true",
+      crossOrigin: "anonymous",
     },
     {
       rel: "stylesheet",
@@ -83,4 +85,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return <Outlet />;
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  return (
+    <main className="h-full">
+      <section className="h-[calc(100svh-100px)] mt-50 leading-[1] grid place-items-center">
+        <div className="container text-center">
+          <h1 className="text-[clamp(150px,15vmax,250px)] font-bold opacity-0 animate-reveal-1">
+            {error.status}
+          </h1>
+          <p className="opacity-0 animate-reveal-2">
+            <Link to="/" aria-label="Get me out of here!" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-180 h-44 relative hover:bg-white/10 clip">
+                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Get me out of here!</span>
+                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
+                  <span className="animation-paused group-hover/contact:animation-running animate-leave">👈</span>
+                </span>
+              </Link>
+          </p>
+        </div>
+        </section>
+    </main>
+  );
 }
