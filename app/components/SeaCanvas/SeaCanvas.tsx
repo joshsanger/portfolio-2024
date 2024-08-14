@@ -151,7 +151,7 @@ export default function SeaCanvas() {
     <canvas
       ref={canvasRef}
       className={cn(
-        "sea-canvas bg-transparent size-full absolute top-0 right-0 z-[-1] animate-reveal-nav opacity-0",
+        "sea-canvas bg-transparent size-full absolute top-0 right-0 z-[-1] animate-reveal-canvas opacity-0",
       )}
     />
   );

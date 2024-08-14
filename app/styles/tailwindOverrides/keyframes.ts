@@ -15,6 +15,14 @@ export default {
       transform: 'translateX(50%)',
     },
   },
+  'fade-in-canvas': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 0.6,
+    },
+  },
   'reveal': {
     '0%': {
       opacity: 0,
