@@ -34,12 +34,12 @@ export const meta: MetaFunction = () => {
     {
       name: "twitter:image",
       content:
-        "https://cdn.shopify.com/s/files/1/0263/4036/0214/files/josh-banner.png?v=1723631980",
+        "https://joshsanger.ca/josh-banner.png",
     },
     {
       property: "og:image",
       content:
-        "https://cdn.shopify.com/s/files/1/0263/4036/0214/files/josh-banner.png?v=1723631980",
+        "https://joshsanger.ca/josh-banner.png",
     },
     {
       property: "og:title",
