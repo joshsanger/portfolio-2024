@@ -267,7 +267,7 @@ export default function CodeCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className={cn('bg-transparent size-full absolute top-0 right-0 z-[-1] transition-opacity duration-[1.1s]', isSceneReady ? 'opacity-100' : 'opacity-0')}
+      className={cn('code-canvas bg-transparent size-full absolute top-0 right-0 z-[-1] transition-opacity duration-[1.1s]', isSceneReady ? 'opacity-100' : 'opacity-0')}
     />
   )
 }

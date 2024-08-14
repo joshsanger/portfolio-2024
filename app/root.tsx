@@ -12,6 +12,7 @@ import tailwindCss from "./tailwind.css?url";
 import me from "~/images/me.jpg";
 import WordScramble from "~/components/WordScramble/WordScramble";
 import HoverGlitch from "~/components/HoverGlitch/HoverGlitch";
+import SeaCanvas from "~/components/SeaCanvas/SeaCanvas";
 
 export const links: LinksFunction = () => {
   return [
@@ -97,9 +98,10 @@ export function ErrorBoundary() {
           <h1 className="text-[clamp(150px,15vmax,250px)] font-bold opacity-0 animate-reveal-1">
             {error.status}
           </h1>
-          <p className="opacity-0 animate-reveal-2">
-            <Link to="/" aria-label="Get me out of here!" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-180 h-44 relative hover:bg-white/10 clip">
-                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Get me out of here!</span>
+          <p className="text-16 md:text-[clamp(18px,1.5vmax,22px)] leading-[1.5] mb-20 animate-reveal-2 font-sans max-w-500 mx-auto text-balance opacity-0">Ye be off the map! The page ye be seekin’ be lost at sea, swallowed by the briny deep.</p>
+          <p className="opacity-0 animate-reveal-3">
+            <Link to="/" aria-label="Get me out of here!" className="group/contact contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-220 h-44 relative hover:bg-black/80 clip">
+                <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Back to the home port</span>
                 <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
                   <span className="animation-paused group-hover/contact:animation-running animate-leave">👈</span>
                 </span>
@@ -107,6 +109,7 @@ export function ErrorBoundary() {
           </p>
         </div>
         </section>
+        <SeaCanvas />
     </main>
   );
 }
