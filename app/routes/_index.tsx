@@ -116,7 +116,7 @@ export default function Index() {
                   <Email />
                 </a>
               </HoverGlitch>
-              <HoverGlitch count={5}>
+              <HoverGlitch count={3}>
                 <a
                   href="https://x.com/JoshSanger_eth"
                   target="_blank"
