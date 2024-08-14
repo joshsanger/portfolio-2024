@@ -4,6 +4,7 @@ import CodeCanvas from "~/components/CodeCanvas/CodeCanvas";
 import HoverGlitch from "~/components/HoverGlitch/HoverGlitch";
 import Codepen from "~/components/Icons/Codepen";
 import Email from "~/components/Icons/Email";
+import Github from "~/components/Icons/Github";
 import Linkedin from "~/components/Icons/Linkedin";
 import X from "~/components/Icons/X";
 
@@ -81,7 +82,6 @@ export default function Index() {
                   <Linkedin />
                 </a>
               </HoverGlitch>
-
               <HoverGlitch count={7}>
                 <a
                   href="https://codepen.io/joshsanger-the-looper"
@@ -93,13 +93,25 @@ export default function Index() {
                   <Codepen />
                 </a>
               </HoverGlitch>
+
+              <HoverGlitch count={7}>
+                <a
+                  href="https://github.com/joshsanger"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-grid place-items-center size-44 rounded-full bg-teal hover:bg-teal2 animate-reveal-3 opacity-0"
+                  style={{ animationDelay: "0.95s" }}
+                >
+                  <Github />
+                </a>
+              </HoverGlitch>
               <HoverGlitch count={6}>
                 <a
                   href="mailto:joshua.v.sanger@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-grid place-items-center size-44 rounded-full bg-teal hover:bg-teal2 animate-reveal-3 opacity-0"
-                  style={{ animationDelay: "0.95s" }}
+                  style={{ animationDelay: "1.05s" }}
                 >
                   <Email />
                 </a>
@@ -110,7 +122,7 @@ export default function Index() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-grid place-items-center size-44 rounded-full bg-teal hover:bg-teal2 animate-reveal-3 opacity-0"
-                  style={{ animationDelay: "1.05s" }}
+                  style={{ animationDelay: "1.15s" }}
                 >
                   <X />
                 </a>
