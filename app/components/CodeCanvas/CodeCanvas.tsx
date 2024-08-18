@@ -13,7 +13,7 @@ export default function CodeCanvas() {
 
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || isMountedRef.current) return;
 
     isMountedRef.current = true;
 
@@ -165,14 +165,14 @@ export default function CodeCanvas() {
 
     const charIndices = new Float32Array(particlesGeometry.attributes.position.count);
     for (let i = 0; i < charIndices.length; i++) {
-      charIndices[i] = Math.floor(Math.random() * 256);
+      charIndices[i] = Math.floor(Math.random() * 64);
     }
     particlesGeometry.setAttribute(
       "aCharIndex",
       new THREE.BufferAttribute(charIndices, 1)
     );
 
-    const asciiTexture = textureLoader.load("./ascii_texture.png", (texture) => {
+    const asciiTexture = textureLoader.load("./transparent-ibm.png", (texture) => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
 
@@ -199,6 +199,9 @@ export default function CodeCanvas() {
     const particlesMaterial = new THREE.ShaderMaterial({
       vertexShader: particlesVertexShader,
       fragmentShader: particlesFragmentShader,
+      transparent: true,
+      blending: THREE.NormalBlending,
+      depthWrite: false,
       uniforms: {
         uResolution: new THREE.Uniform(
           new THREE.Vector2(
@@ -209,7 +212,7 @@ export default function CodeCanvas() {
         uPictureTexture: new THREE.Uniform(textureLoader.load("./code3.jpg", checkIfReady)),
         uAsciiTexture: new THREE.Uniform(asciiTexture),
         uAsciiTextureSize: new THREE.Uniform(256.0),
-        uAsciiCharSize: new THREE.Uniform(16.0),
+        uAsciiCharSize: new THREE.Uniform(32.0),
         uDisplacementTexture: new THREE.Uniform(displacement.texture),
       },
     });
@@ -261,6 +264,9 @@ export default function CodeCanvas() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("touchmove", handleTouchMove);
+
+      // dispose
+      renderer.dispose();
     };
   }, []);
 
