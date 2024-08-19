@@ -175,6 +175,7 @@ export default function CodeCanvas() {
     const asciiTexture = textureLoader.load("./transparent-ibm.png", (texture) => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
+      texture.flipY = false;
 
       checkIfReady();
     });
