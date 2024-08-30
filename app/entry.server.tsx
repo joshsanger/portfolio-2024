@@ -24,6 +24,68 @@ export default function handleRequest(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext
 ) {
+
+  if (request.headers.get('user-agent')?.startsWith("curl")) {
+
+    const whiteColorCode = "\x1b[38;2;255;255;255m";
+    const tealColorCode = "\x1b[38;2;118;205;188m";
+    const pinkColorCode = "\x1b[38;2;208;3;208m";
+    const resetCode = "\x1b[0m";
+    const linkedinLinkStart = "\x1b]8;;https://www.linkedin.com/in/jsanger\x1b\\";
+    const codepenLinkStart = "\x1b]8;;https://codepen.io/joshsanger-the-looper\x1b\\";
+    const githubLinkStart = "\x1b]8;;https://github.com/joshsanger\x1b\\";
+    const portfolioLinkStart = "\x1b]8;;https://joshsanger.ca\x1b\\";
+    const articlesLinkStart = "\x1b]8;;https://medium.com/@joshua.v.sanger\x1b\\";
+    const projectLinkStart = "\x1b]8;;https://shopify.com/editions/summer2024\x1b\\";
+    const hyperlinkEnd = "\x1b]8;;\x1b\\";
+    const linebreak = "\x1b[0m";
+
+    const art = `
+    ${whiteColorCode}
+          JJJJJJJJJJJ                               hhhhhhh
+          J:::::::::J                               h:::::h
+          J:::::::::J                               h:::::h
+          JJ:::::::JJ                               h:::::h
+            J:::::J   ooooooooooo       ssssssssss   h::::h hhhhh
+            J:::::J oo:::::::::::oo   ss::::::::::s  h::::hh:::::hhh
+            J:::::Jo:::::::::::::::oss:::::::::::::s h::::::::::::::hh
+            J:::::jo:::::ooooo:::::os::::::ssss:::::sh:::::::hhh::::::h
+            J:::::Jo::::o     o::::o s:::::s  ssssss h::::::h   h::::::h
+JJJJJJJ     J:::::Jo::::o     o::::o   s::::::s      h:::::h     h:::::h
+J:::::J     J:::::Jo::::o     o::::o      s::::::s   h:::::h     h:::::h
+J::::::J   J::::::Jo::::o     o::::ossssss   s:::::s h:::::h     h:::::h
+J:::::::JJJ:::::::Jo:::::ooooo:::::os:::::ssss::::::sh:::::h     h:::::h
+ JJ:::::::::::::JJ o:::::::::::::::os::::::::::::::s h:::::h     h:::::h
+   JJ:::::::::JJ    oo:::::::::::oo  s:::::::::::ss  h:::::h     h:::::h
+     JJJJJJJJJ        ooooooooooo     sssssssssss    hhhhhhh     hhhhhhh
+
+`;
+
+      const message = `
+  ${resetCode}
+  ${tealColorCode}Senior Front End Developer${resetCode}
+  ${linebreak}
+  ${whiteColorCode}I create beautiful online experiences with baked-in moments of awe and delight.${resetCode}
+  ${linebreak}
+  -------------------
+  ${linebreak}
+  ${pinkColorCode}*${resetCode} ${portfolioLinkStart}Portfolio${hyperlinkEnd}
+  ${pinkColorCode}*${resetCode} ${linkedinLinkStart}LinkedIn${hyperlinkEnd}
+  ${pinkColorCode}*${resetCode} ${codepenLinkStart}Playground (Codepen)${hyperlinkEnd}
+  ${pinkColorCode}*${resetCode} ${githubLinkStart}Github${hyperlinkEnd}
+  ${pinkColorCode}*${resetCode} ${articlesLinkStart}Articles${hyperlinkEnd}
+  ${pinkColorCode}*${resetCode} ${projectLinkStart}Latest project${hyperlinkEnd}
+      `;
+
+      return new Response(`${art}${message}`, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+      });
+    }
+
+
   return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
         request,
