@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 
 import CodeCanvas from "~/components/CodeCanvas/CodeCanvas";
+import SeaCanvas from "~/components/SeaCanvas/SeaCanvas";
 import HoverGlitch from "~/components/HoverGlitch/HoverGlitch";
 import Codepen from "~/components/Icons/Codepen";
 import Email from "~/components/Icons/Email";
@@ -130,7 +131,7 @@ export default function Index() {
             </p>
           </div>
         </div>
-        <CodeCanvas />
+        <SeaCanvas />
       </section>
     </main>
   );
