@@ -108,7 +108,7 @@ export default function Index() {
               </HoverGlitch>
               <HoverGlitch count={6}>
                 <a
-                  href="mailto:joshua.v.sanger@gmail.com"
+                  href="mailto:joshsanger88@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-grid place-items-center size-44 rounded-full bg-teal hover:bg-teal2 animate-reveal-3 opacity-0"

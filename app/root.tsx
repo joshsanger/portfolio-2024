@@ -58,11 +58,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="h-full container flex items-center justify-end">
             <nav className="flex items-center">
               <ul className="hidden gap-10 items-center font-sans text-teal md:flex">
-                <li><a href="https://shopify.com/editions/summer2024" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
+                <li><a href="https://shopify.com/editions/winter2026" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Latest project" className="px-10"/></a></li>
                 <li><a href="https://medium.com/@joshua.v.sanger" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Articles" className="px-10"/></a></li>
                 <li><a href="https://codepen.io/joshsanger-the-looper" target="_blank" rel="noopener noreferrer" className="hover:underline"><WordScramble word="Playground" className="px-10"/></a></li>
               </ul>
-              <a href="mailto:joshua.v.sanger@gmail.com" aria-label="Contact" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-123 h-44 relative hover:bg-white/10 clip">
+              <a href="mailto:joshsanger88@gmail.com" aria-label="Contact" className="group/contact mr-30 ml-15 contact font-sans rounded-full bg-teal text-black inline-block transition-colors w-123 h-44 relative hover:bg-white/10 clip">
                 <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 group-hover/contact:-translate-y-full transition-transform">Contact</span>
                 <span className="pointer-events-none absolute size-full grid place-items-center group-hover/contact:ease-out ease-bounce-back duration-300 translate-y-full group-hover/contact:translate-y-0 transition-transform">
                   <span className="animation-paused group-hover/contact:animation-running animate-wave">👋</span>

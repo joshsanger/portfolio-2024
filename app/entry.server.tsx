@@ -36,7 +36,7 @@ export default function handleRequest(
     const githubLinkStart = "\x1b]8;;https://github.com/joshsanger\x1b\\";
     const portfolioLinkStart = "\x1b]8;;https://joshsanger.ca\x1b\\";
     const articlesLinkStart = "\x1b]8;;https://medium.com/@joshua.v.sanger\x1b\\";
-    const projectLinkStart = "\x1b]8;;https://shopify.com/editions/summer2024\x1b\\";
+    const projectLinkStart = "\x1b]8;;https://shopify.com/editions/winter2026\x1b\\";
     const hyperlinkEnd = "\x1b]8;;\x1b\\";
     const linebreak = "\x1b[0m";
 
