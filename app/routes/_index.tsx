@@ -11,7 +11,7 @@ import X from "~/components/Icons/X";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Joshua Sanger | Senior Front End Developer" },
+    { title: "Joshua Sanger | Staff Engineer" },
     {
       name: "description",
       content:
@@ -21,7 +21,7 @@ export const meta: MetaFunction = () => {
     { name: "twitter:site", content: "joshsanger.ca" },
     {
       name: "twitter:title",
-      content: "Joshua Sanger | Senior Front End Developer",
+      content: "Joshua Sanger | Staff Engineer",
     },
     {
       name: "twitter:description",
@@ -45,7 +45,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: "og:title",
-      content: "Joshua Sanger | Senior Front End Developer",
+      content: "Joshua Sanger | Staff Engineer",
     },
   ];
 };
@@ -65,7 +65,7 @@ export default function Index() {
               </span>
             </h1>
             <p className="text-16 text-teal font-sans md:text-[clamp(18px,1.5vw,22px)] mt-20 opacity-0 translate-y-[20px] animate-reveal-2">
-              Senior Front End Developer
+              Staff Engineer
             </p>
             <p className="opacity-0 translate-y-[20px] animate-reveal-3 text-16 md:text-[clamp(18px,1.5vmax,22px)]  max-w-300 md:max-w-350 lg:max-w-425 text-balance mt-16 leading-[1.5]">
               I create beautiful online experiences with baked-in moments of awe
